@@ -1,0 +1,13 @@
+{
+  "labels": [
+    { "id": 1, "label": "réfrigération" },
+    { "id": 2, "label": "assurance" },
+    { "id": 3, "label": "identité" },
+    { "id": 4, "label": "élément" },
+    { "id": 5, "label": "données" },
+    { "id": 6, "label": "sécurité" },
+    { "id": 7, "label": "énergie" },
+    { "id": 8, "label": "contrôle" }
+  ]
+}
+

@@ -1,0 +1,32 @@
+.transmed-logo {
+    /*font-size: 2.5rem;*/
+    font-weight: bold;
+    color: #007bff;
+    /*text-align: center;*/
+    /*margin-bottom: 2rem;*/
+}
+
+.table th {
+    text-align: center;
+    color: black;
+}
+
+.custom-samesize-btn {
+    width: 68px !important;
+}
+
+ .dataTables_wrapper {
+     margin-bottom: 60px; /* Adjust the value as needed */
+ }
+
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.control:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.control:before {
+    font-size: 12px; /* Adjust size as needed */
+    margin-right: 8px; /* Adjust spacing as needed */
+    line-height: 1; /* Adjust to center the icon vertically */
+}
+
+.dataTables_wrapper .row:last-child {
+    margin-top: 20px; /* Adjust this value to increase or decrease the space */
+}
