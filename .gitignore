@@ -27,6 +27,8 @@ google58fd95e1d6d3586e.html
 client_secret..json
 z_bootstrap-5.3.3-examples
 sql/*
+xlsx/*
+user_img/*
 
 *.php~
 *.html~
@@ -86,6 +88,9 @@ $RECYCLE.BIN/
 *.mp4
 *.mov
 *.jpeg
+*.JPG
+*.JPEG
+*.PNG
 
 
 
