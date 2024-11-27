@@ -1,11 +1,12 @@
 <?php /** @noinspection PhpExpressionResultUnusedInspection */
-require_once('../../../inc/config/initialize.php');
-
+require_once('../../../../../inc/config/initialize.php');
+$database = $database ?? null;
 try {
 
-
+    $sql = null;
     // Check if there is a search term
     if (isset($_GET['field']) && isset($_GET['query'])) {
+        /** @noinspection DuplicatedCode */
         $field = $_GET['field'];
         $query = $_GET['query'];
 

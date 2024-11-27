@@ -1,4 +1,5 @@
-<?php require_once('../../inc/config/initialize.php'); ?>
+<?php global $session;
+require_once('../../inc/config/initialize.php'); ?>
 
 <?php  $session->confirmation_protected_page(); ?>
 

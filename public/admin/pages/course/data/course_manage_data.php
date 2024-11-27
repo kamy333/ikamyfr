@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once('../../../inc/config/config.php');
+require_once('../../../../../inc/config/config.php');
 
 // Database connection
 $host = DB_SERVER;// 'localhost';

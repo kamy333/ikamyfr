@@ -2,11 +2,12 @@
 header('Content-Type: application/json');
 if (file_exists('../../../../inc/config/initialize.php')){
     require_once('../../../../inc/config/initialize.php');
-} else {
-    require_once('../../../../../../../inc/config/initialize.php');
 }
 
+$database = $database ?? null;
+
 // Whitelist of allowed class names
+/** @noinspection DuplicatedCode */
 $allowedClasses = ['Employee'];
 
 // Retrieve the class name from the request
@@ -41,6 +42,7 @@ $endDate = $_GET['endDate'] ?? null;
 //$orderColumnIndex = $_GET['order'][0]['column'] ?? 0;
 //$orderDirection = $_GET['order'][0]['dir'] ?? 'asc';
 
+/** @noinspection DuplicatedCode */
 $orderColumnIndex = ($_GET['order'][0]['column'] ?? 1) - 1;
 $orderDirection = $_GET['order'][0]['dir'] ?? 'asc';
 
@@ -121,5 +123,3 @@ $response = [
 echo json_encode($response);
 
 $database->close_connection();
-?>
-

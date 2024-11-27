@@ -3,7 +3,7 @@ require_once('../../inc/config/initialize.php');
 $blacklist_ip = new BlacklistIp();
 $blacklist_ip->block_blacklisted_ips();
 
-if ($session->is_logged_in()) {
+if (isset($session) && $session->is_logged_in()) {
     redirect_to("index.php");
 }
 

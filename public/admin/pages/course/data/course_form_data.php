@@ -1,6 +1,6 @@
 <?php /** @noinspection PhpExpressionResultUnusedInspection */
-require_once('../../../inc/config/initialize.php');
-
+require_once('../../../../../inc/config/initialize.php');
+$database=$database??false;
 try {
 
 

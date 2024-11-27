@@ -6,6 +6,8 @@
  * Date: 9/22/2015
  * Time: 12:45 PM
  */
+
+
 class MyPHPMailer extends PHPMailer
 {
 

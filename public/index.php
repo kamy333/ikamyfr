@@ -22,6 +22,7 @@
             text-align: center;
             margin-top: 1rem;
         }
+
     </style>
 </head>
 <body>

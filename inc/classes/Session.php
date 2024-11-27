@@ -30,6 +30,11 @@ class Session
     public $referrer;
     public $count;
 
+    public $errors ;
+    public $post_data;
+
+    public $success;
+
     public function set_referrer()
     {
         if (isset($_SERVER['HTTP_REFERER'])) {
@@ -39,8 +44,6 @@ class Session
 
     function __construct()
     {
-        //   session_save_path(SESSION_PATH);
-//        session_name('rajah');
         session_start();
         $this->visitor_count();
         $this->check_message();
@@ -194,22 +197,97 @@ class Session
 
     public function logout()
     {
-
         //  session_destroy();
         $this->end_session();
     }
 
     //todo conflict of local message and session message
-    public function message($msg = "")
+    public function message($msg = "", $OK = false)
     {
         if (!empty($msg)) {
             // then this is "set message"
             // make sure you understand why $this->message=$msg wouldn't work
+            if (strtolower($OK) =='success' || $OK==true || strtolower($OK) =='true' || strtolower($OK) =='OK'){
+                $_SESSION["OK"] = true;
+                $this->ok(true);
+            }else {
+               unset($_SESSION["OK"]) ;
+
+            }
             $_SESSION['message'] = $msg;
         } else {
             // then this is "get message"
             return $this->message;
         }
+        return null;
+    }
+
+
+public function errors($errors = "")
+{
+    if (!empty($errors)) {
+        $_SESSION['errors'] = $errors;
+        $this->errors = $errors;
+        return null;
+    }
+
+    if (isset($_SESSION['errors'])) {
+        $data_return = $_SESSION['errors'];
+        unset($_SESSION['errors'], $this->errors);
+        return $data_return;
+    }
+
+    return null;
+}
+
+public function post_data($post_data = "")
+{
+    if (!empty($post_data)) {
+        $_SESSION['post_data'] = $post_data;
+        $this->post_data = $post_data;
+        return null;
+    }
+
+    if (isset($_SESSION['post_data'])) {
+        $data_return = $_SESSION['post_data'];
+        unset($_SESSION['post_data'], $this->post_data);
+        return $data_return;
+    }
+
+    return null;
+}
+
+public function success($success = "")
+{
+    if (!empty($success)) {
+        $_SESSION['success'] = $success;
+        $this->success = $success;
+        return null;
+    }
+
+    if (isset($_SESSION['success'])) {
+        $data_return = $_SESSION['success'];
+        unset($_SESSION['success'], $this->success);
+        return $data_return;
+    }
+
+    return null;
+}
+
+    private function getAlert($alert_type = "success", $title="Success")
+    {
+        $msg=$_SESSION["message"];
+        $icon = ($alert_type == "success") ?
+            "<i  class='bi bi-check-lg text-success-emphasis' style='font-size: 1.5rem'></i>" :
+            "<i class='bi bi-exclamation-triangle text-danger-emphasis' style='font-size: 1.5rem'></i>";
+        return <<<HTML
+        <div class="mt-3">
+        <div class="alert alert-{$alert_type} alert-dismissible fade show" role="alert">
+          <strong>$icon</strong> $msg
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        </div>
+        HTML;
     }
 
     public function ok($OK = false)
@@ -220,19 +298,6 @@ class Session
             $_SESSION["OK"] = true;
         }
     }
-
-    private function getAlert($alert_type = "success", $title="Success")
-    {
-        $msg=$_SESSION["message"];
-        return <<<HTML
-        <div class="alert alert-{$alert_type} alert-dismissible fade show" role="alert">
-          <strong>$title</strong> $msg
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        HTML;
-    }
-
-    
 
     private function check_message()
     {
@@ -250,6 +315,7 @@ class Session
         }
 
     }
+
 
 
     private function check_login()

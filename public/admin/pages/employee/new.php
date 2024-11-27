@@ -1,12 +1,12 @@
 <?php
 require_once('../../../../inc/config/initialize.php');
 $lang = $_GET['lang'] ?? 'en';
-$classeName = $_GET['class_name'] ?? 'Employee';
-$myClass = new $classeName() ?? new Employee();
+$className = $_GET['class_name'] ?? 'Employee';
+$myClass = new $className() ?? new Employee();
 $pageName = $myClass::$page_name ?? 'Employee';
 $title = "Add New Employee" ?? 'Transmed';
 
-include 'header.php';
+include HEADER;
 
 // Check if we're copying an existing employee
 $copy_id = $_GET['copy_id'] ?? null;
@@ -24,5 +24,5 @@ $method = 'POST';
 // Include the form component
 include 'employee_form.php';
 
-include 'footer.php';
-?>
+include FOOTER;
+

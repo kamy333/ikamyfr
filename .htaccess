@@ -1,11 +1,19 @@
-SetOutputFilter DEFLATE
-AddOutputFilterByType DEFLATE "application/atom+xml" "application/javascript" "application/json" "application/ld+json" "application/manifest+json" "application/rdf+xml" "application/rss+xml" "application/schema+json" "application/vnd.geo+json" "application/vnd.ms-fontobject" "application/x-font-ttf" "application/x-javascript" "application/x-web-app-manifest+json" "application/xhtml+xml" "application/xml" "font/eot" "font/opentype" "image/bmp" "image/svg+xml" "image/vnd.microsoft.icon" "image/x-icon" "text/cache-manifest" "text/css" "text/html" "text/javascript" "text/plain" "text/vcard" "text/vnd.rim.location.xloc" "text/vtt" "text/x-component" "text/x-cross-domain-policy" "text/xml"
+#SetOutputFilter DEFLATE
+#AddOutputFilterByType DEFLATE "application/atom+xml" "application/javRewriteRule ^$ /public/index.php [R=301,L]ascript" "application/json" "application/ld+json" "application/manifest+json" "application/rdf+xml" "application/rss+xml" "application/schema+json" "application/vnd.geo+json" "application/vnd.ms-fontobject" "application/x-font-ttf" "application/x-javascript" "application/x-web-app-manifest+json" "application/xhtml+xml" "application/xml" "font/eot" "font/opentype" "image/bmp" "image/svg+xml" "image/vnd.microsoft.icon" "image/x-icon" "text/cache-manifest" "text/css" "text/html" "text/javascript" "text/plain" "text/vcard" "text/vnd.rim.location.xloc" "text/vtt" "text/x-component" "text/x-cross-domain-policy" "text/xml"
+#
+#
+# LoadModule deflate_module modules/mod_deflate.so
+
 
 # SECTION BEGIN GIT PROTECTION
 RedirectMatch 404 /\.git
 # SECTION END GIT PROTECTION
 
+RewriteRule ^$ /public/index.php [R=301,L]
 
+#RewriteEngine On
+##RewriteCond %{REQUEST_URI} !public/
+#RewriteRule (.*) public/$1 [L]
 
 ############################# Error Documents ##############################
 # Specify custom error pages for specific HTTP status codes.

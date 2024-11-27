@@ -1,13 +1,21 @@
 <?php
 require_once('../../inc/config/initialize.php');
-$session->confirmation_protected_page();
+if (isset($session)) {
+    $session->confirmation_protected_page();
+}else{
+    redirect_to('/public/admin/login.php');
+}
 if(User::is_employee() || User::is_secretary() || User::is_visitor()){ redirect_to('index.php');}
 
+if (isset($Nav))
+{
+    $Nav= $Nav;
+}
 ?>
 
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
 
@@ -15,6 +23,7 @@ if(User::is_employee() || User::is_secretary() || User::is_visitor()){ redirect_
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INSPINIA | Advanced Form Elements</title>
+
 
     <link href="<?php echo $Nav->path_public;?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo $Nav->path_public;?>font-awesome/css/font-awesome.css" rel="stylesheet">

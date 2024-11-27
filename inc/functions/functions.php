@@ -41,22 +41,14 @@ function output_message($message = "", $type = "error")
 
     }
 
-
-    $msg=htmlentities($message, ENT_COMPAT, 'utf-8');
-
     if (!empty($message)) {
-        $output="    <div class='alert alert-$alert alert-dismissible ' role='alert'>
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        <strong>$txt</strong> $msg
-        </div>";
+        $output = "<div class=\"alert alert-{$alert} fade in\"  role='alert' >";
+        $output .= "<a href='#' class='close' data-dismiss='alert'>&times;</a>";
+        $output .= "<span class=\"glyphicon glyphicon-{$gliphicon}\" aria-hidden='true'></span>";
+        $output .= "<span class=\"sr-only\">{$txt}:</span>";
 
-//        $output = "<div class=\"alert alert-{$alert} fade in\"  role='alert' >";
-//        $output .= "<a href='#' class='close' data-dismiss='alert'>&times;</a>";
-//        $output .= "<span class=\"glyphicon glyphicon-{$gliphicon}\" aria-hidden='true'></span>";
-//        $output .= "<span class=\"sr-only\">{$txt}:</span>";
-//
-//        $output .= " &nbsp;" . htmlentities($message, ENT_COMPAT, 'utf-8');
-//        $output .= "</div>";
+        $output .= " &nbsp;" . htmlentities($message, ENT_COMPAT, 'utf-8');
+        $output .= "</div>";
 
         return $output;
     } else {
@@ -73,7 +65,7 @@ function has_presence($value)
 function my_autoloader($class_name)
 {
     $class_name = strtolower($class_name);
-    $path = LIB_PATH . DS .'classes'.DS. "{$class_name}.php";
+    $path = LIB_PATH . DS . "{$class_name}.php";
     if (file_exists($path)) {
         require_once($path);
     } else {
@@ -83,11 +75,9 @@ function my_autoloader($class_name)
 
 spl_autoload_register('my_autoloader');
 
-
-
 function include_layout_template($template = "")
 {
-    include(SITE_ROOT . DS . 'public' .DS.'assets'. DS . 'layouts' . DS . $template);
+    include(SITE_ROOT . DS . 'public' . DS . 'layouts' . DS . $template);
 }
 
 function log_action($action, $message = "")
@@ -683,12 +673,15 @@ function h($string)
 
 function hs($string)
 {
-    return htmlspecialchars($string);
+    return htmlspecialchars($string, ENT_COMPAT, "utf-8");  // ENT_QUOTES
+//    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
-function hspc($string)
+
+function hspc($string): string
 {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
+
 function e($string)
 {
     global $database;
@@ -1607,77 +1600,33 @@ function remove_accents($str, $utf8 = true)
 
 //- remove_accents()
 
-function ebook($link = "", $text = "", $id = 0, $source = "")
-{
-    $output = "";
-    $output .= $link;
-    $output .= "<a class='btn btn-default' role='button' data-toggle='collapse' href='#collapseExample" . $id . "' aria-expanded='false' aria-controls='collapseExample" . $id . "'>";
-    $output .= " ?</a>";
-    $output .= "<div class=\"collapse\" id=\"collapseExample" . $id . "\">
-            <div class=\"well\">
-             $source
-             $text
-            </div>
 
-        </div>";
 
+
+function NumberFormatColor($number=0){
+    $output="";
+    $style="";
+
+    if( ((float) $number) < 0){$style="style='color:red'";} else {$style="";}
+
+    return $style;
+}
+
+function TD_NumberFormatColor($number=0,$strong=false){
+    $output="";
+    $style="";
+    $sum = number_format($number, 2);
+
+    if( ((float) $number) < 0){$style="style='color:red'";} else {$style="";}
+    if($strong){
+        $output = "<td class='text-right' $style ><strong>" . $sum . "</strong></td>";
+
+    } else {
+        $output = "<td class='text-right' $style >" . $sum . "</td>";
+
+    }
     return $output;
 }
-
-function get_ebooks($img_folder = "")
-{
-
-    global $Nav;
-    $default_path = $Nav->folder;
-//    $default_path = "";
-    $dir = SITE_ROOT . DS . $default_path . DS . "/img/" . $img_folder;
-    $picture_array = array();
-//    $output="";
-    if (is_dir($dir)) {
-        $dir_array = scandir($dir);
-        foreach ($dir_array as $file) {
-            if (stripos($file, '.') > 0) {
-                $ext = pathinfo($file, PATHINFO_EXTENSION);
-                $file_no_ext = str_replace("." . $ext, "", $file);
-
-
-                $alt = trim(substr($file_no_ext, 3, 100));
-                $alt = str_replace("_", " ", $alt);
-                $alt = ucfirst($alt);
-
-
-                if ($ext == 'jpg' || $ext == 'JPG' || $ext == 'png' || $ext == 'PNG' || 'pdf') {
-
-                    $img_html = "<img alt=\"{$file_no_ext}\" class=\"img-responsive\" src='/public/img/$img_folder/{$file}' style='width: 30em;height: 20em' >";
-
-                    $img_src = "<img src='/public/img/$img_folder/{$file}' alt='{$alt}' class='img-responsive pull-left'> ";
-                    $full_path = "/public/img/$img_folder/{$file}";
-                    $output = array(
-                        "img_tag" => $img_html,
-                        'img_file' => $file,
-                        "img_name" => $file_no_ext,
-                        "img_ext" => $ext,
-                        "img_folder" => $Nav->folder,
-                        "img_path" => $dir,
-                        "img_src" => $img_src,
-                        "img_alt" => $alt,
-                        "full_path" => $full_path,
-                        "href" => "<a target='_blank' href='$full_path'>$file_no_ext</a>"
-                    );
-
-
-                    array_push($picture_array, $output);
-
-
-                }
-            }
-        }
-    }
-    return $picture_array;
-
-
-}
-
 
 ?>
 

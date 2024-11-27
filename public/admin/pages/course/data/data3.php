@@ -1,6 +1,7 @@
 <?php
 
-require_once('../../../inc/config/initialize.php');
+require_once('../../../../../inc/config/initialize.php');
+$database = $database ?? null;
 
 if (isset($_GET['field']) && $_GET['field'] === 'chauffeur' && isset($_GET['query'])) {
     $query = $_GET['query'];

@@ -1,11 +1,11 @@
 <?php
 require_once('../../../../inc/config/initialize.php');
 $title = "Employee Details";
-include 'header.php';
+include HEADER;
 
 // Get the employee ID from the query string
 $id = $_GET['id'] ?? null;
-
+$classeName = $_GET['class_name'] ?? 'Employee';
 if (!$id) {
     echo "<div class='container mt-4'><p>Employee ID is required to view details.</p></div>";
     include 'footer.php';
@@ -51,4 +51,4 @@ if (!$employee) {
     }
 </script>
 
-<?php include 'footer.php'; ?>
+<?php include FOOTER; ?>

@@ -1,15 +1,13 @@
 <?php
 if (file_exists('../../../../inc/config/initialize.php')) {
     require_once('../../../../inc/config/initialize.php');
-} else {
-    require_once('../../../../../../../inc/config/initialize.php');
 }
 
 $lang = $_GET['lang'] ?? 'en';
 $classeName = $_GET['class_name'] ?? 'Employee';
 $myClass = new $classeName() ?? new Employee();
 $pageName = $myClass::$page_name ?? 'Employee';
-$title = "Liste $pageName" ?? 'Transmed';
+$title = "List $pageName" ?? 'Transmed';
 $is_position = false;
 
 include HEADER;
@@ -18,14 +16,28 @@ include HEADER;
 
 
 <div class="container-lg mt-1">
-    <div class="row mb-1">
-        <div class="">
-            <h2 class="text-center">Liste <?= $pageName ?>    </h2>
-        </div>
-    </div>
-    <div class="row mb-1">
-        <div class="">
-            <a href='new.php' class='btn btn-primary btn-lg'>Add <?= $pageName ?></a>
+    <?php if (isset($message)) {
+        echo $message;
+    } ?>
+
+    <!--    <div class="row mb-1">-->
+    <!--        <div class="">-->
+    <!--            <h2 class="text-center">List --><?php //= $pageName ?><!--    </h2>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row mb-1">-->
+    <!---->
+    <!--    </div>-->
+
+    <div class="mb-5">
+        <div class="row align-items-center mt-3 ">
+            <div class="col-md-3  mb-3">
+                <a href="../../index.php" class="btn btn-outline-primary"><i class="bi bi-chevron-double-left"></i>
+                    Admin</a>
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-center text-info">List <?= $pageName ?>    </h2>
+            </div>
         </div>
     </div>
 
@@ -44,11 +56,11 @@ include HEADER;
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="modalStartDate" class="form-label">Start Date:</label>
+                            <label for="startDate" class="form-label">Start Date:</label>
                             <input type="date" id="startDate" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="modalEndDate" class="form-label">End Date:</label>
+                            <label for="endDate" class="form-label">End Date:</label>
                             <input type="date" id="endDate" class="form-control">
                         </div>
                     </div>
@@ -59,27 +71,35 @@ include HEADER;
                 </div>
             </div>
         </div>
-        <div class="col-md-5 align-self-end">
+
+        <div class="col-md-2 ">
+            <a href='new.php' class='btn btn-primary btn-lg mt-3 mr-1'>Add <?= $pageName ?></a>
+        </div>
+        <div class="col-md-9 align-self-end">
 
             <!-- Update the searchForm button to trigger the modal -->
-            <button id="searchForm" class="btn btn-primary mt-3" data-bs-toggle="modal"
+            <button id="searchForm" class="btn btn-primary btn-lg mt-3  mr-5" data-bs-toggle="modal"
                     data-bs-target="#dateFilterModal" title="Search for data">
                 <i class="bi bi-search"></i> <!-- Filter Icon -->
             </button>
 
-
-            <button id="clearButton" class="btn btn-secondary mt-3" data-bs-toggle="popover"
+            <button id="clearButton" class="btn btn-secondary  btn-lg mt-3 flex-md-row-" data-bs-toggle="popover"
                     title="Clear applied filters">
                 <i class="bi bi-x-circle-fill"></i> <!-- Clear Icon -->
             </button>
-            <button id="todayButton" class="btn btn-success mt-3" data-bs-toggle="popover" title="Shows today's data">
+
+
+
+            <button id="todayButton" class="btn btn-success  btn-lg  mt-3" data-bs-toggle="popover" title="Shows today's data">
                 <i class="bi bi-calendar-day"></i> <!-- Today Icon -->
             </button>
-            <button id="yesterdayButton" class="btn btn-info mt-3" data-bs-toggle="popover"
+
+            <button id="yesterdayButton" class="btn btn-info btn-lg mt-3" data-bs-toggle="popover"
                     title="Shows yesterday's data">
                 <i class="bi bi-arrow-left-circle"></i> <!-- Yesterday Icon -->
             </button>
-            <button id="tomorrowButton" class="btn btn-info mt-3" data-bs-toggle="popover"
+
+            <button id="tomorrowButton" class="btn btn-info  btn-lg  mt-3" data-bs-toggle="popover"
                     title="Shows tomorrow's data">
                 <i class="bi bi-arrow-right-circle"></i> <!-- Tomorrow Icon -->
             </button>
@@ -91,7 +111,7 @@ include HEADER;
 
     <!--    <table id="myTable" class="table table-striped table-bordered" style="width:100%">-->
     <table id="myTable" class="display responsive nowrap table table-striped table-bordered" style="width:100%">
-        <!--            <table id="myTable" class="display responsive nowrap  table-striped " style="width:100%">-->
+        <!--  <table id="myTable" class="display responsive nowrap  table-striped " style="width:100%">-->
 
 
         <?php echo $myClass::datatable_thead_tr_th($is_position); ?>

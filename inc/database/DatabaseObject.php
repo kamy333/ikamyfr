@@ -856,7 +856,7 @@ class DatabaseObject
 
         $output .= "<div class='col-md-3'>";
         $output .= "<ul class='list-group'>";
-        $output .= "<li class='list-group-item'>count db <span class='badge''>$count</span></li>";
+        $output .= "<li class='list-group-item'>count db <span class='badge text-bg-secondary''>$count</span></li>";
         $output .= "<li class='list-group-item'>" . "<b>Database schema:<span class='color:red'> {$class_name}</span></b>" . "</li>";
         foreach ($fields as $f) {
             $output .=
@@ -864,13 +864,20 @@ class DatabaseObject
         }
 
         $output .= "</ul>";
+        $output .= "</div>";
 
+        $output .= "<div class='container'>";
+        $output .= "<div class='row text-start'>";
         $output .= $comma_separated = " \$db_fields = ['" . implode("','", $fields) . "']<br><hr>";
+        $output .= "</div>";
+        $output .= "<div class='text-start'>";
 
         foreach ($fields as $field) {
-            $output .= "\${$field};<br>";
+            $output .= "public \${$field};</span><br>";
 
         }
+        $output .= "</div>";
+        $output .= "</div>";
 
         return $output;
     }
@@ -1492,8 +1499,9 @@ class DatabaseObject
         $output .= "<div class='col-md-3'>";
         $output .= "<ul class=\"list-group\">";
         $output .= "<li  class=\"list-group-item\">";
-        $output .= "<span class=\"badge\">$count</span>";
-        $output .= "Count in $class </li>";
+        $output .= "Count in $class ";
+        $output .= "<span class=\"badge text-bg-secondary\">$count</span>";
+        $output .= "</li>";
         $output .= "<li  class=\"list-group-item\">";
         $output .= "mySQL <b>" . static::$table_name . "</b> ";
         $output .= "</li>";

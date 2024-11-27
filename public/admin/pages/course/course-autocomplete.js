@@ -1,7 +1,8 @@
+// noinspection DuplicatedCode
 $(document).ready(function () {
     // Autocomplete for pseudo field
-    var $pseudo = $('#pseudo');
-    var $dataUrl='data/data.php';
+    let $pseudo = $('#pseudo');
+    let $dataUrl='data/course_form_data.php';
 
 
     $pseudo.autocomplete({
@@ -121,6 +122,7 @@ $(document).ready(function () {
     $('chauffeur').select2({
         placeholder: 'Select a chauffeur',
         allowClear: true,});
+    }
 
 
 
@@ -154,7 +156,4 @@ $(document).ready(function () {
     //     }
     // });
 
-
-
-
-});
+);

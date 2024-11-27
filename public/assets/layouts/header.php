@@ -1,3 +1,11 @@
+<?php
+
+$style = $style ?? MY_URL_PUBLIC_ASSETS.'css'.DS.'style.css';
+$javascript = $javascript ?? MY_URL_PUBLIC_ASSETS.'js'.DS.'main.js';
+//$style = $style ?? '/public/assets/css/style.css';
+?>
+
+
 <!DOCTYPE html>
 <html lang="<?= $lang ?? 'en' ?>">
 <head>
@@ -12,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?=$style ?>">
 
 </head>
 

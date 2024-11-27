@@ -19,17 +19,6 @@ log/*.log.[0-9]
 # Excel Backup File
 *.xlk
 
-vendor/*
-logs/*.txt
-logs/log.txt
-inc/config/config.php
-google58fd95e1d6d3586e.html
-client_secret..json
-z_bootstrap-5.3.3-examples
-sql/*
-xlsx/*
-user_img/*
-
 *.php~
 *.html~
 *.css~
@@ -94,3 +83,27 @@ $RECYCLE.BIN/
 
 
 
+public/**/delete*/*
+
+public/assets/layouts/delete/
+public/admin/delete/
+public/admin/delete2/
+public/admin/pages/delete/
+public/admin/pages/employee/delete/
+#public/admin/pages/employee/backup/*
+public/admin/pages/employee/backup/
+
+
+vendor/*
+logs/*.txt
+logs/log.txt
+inc/config/config.php
+google58fd95e1d6d3586e.html
+client_secret..json
+z_bootstrap-5.3.3-examples
+sql/*
+xlsx/*
+user_img/*
+
+/inc/database/sqlsrvr/sqlservr_connect.php
+/public/admin/delete/

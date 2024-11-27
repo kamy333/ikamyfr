@@ -72,7 +72,7 @@ if (!csrf_token_is_valid() || !csrf_token_is_recent()) {
         if(empty($valid->errors)){
             if(!isset($user->password) ){
                 if(!$user->update_no_password()){
-                    $session->message("User: ".$user->username." "."has been updated for ID (".$user->id .") but no password");
+                    $session->message("User: ".$user->username." "."has been updated for ID (".$user->id .") but no password", "success");
                     $session->ok(true);
                     redirect_to("manage_user.php");
 

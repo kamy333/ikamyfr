@@ -1,13 +1,28 @@
-<?php
+<?php /** @noinspection PhpExpressionResultUnusedInspection */
+
+$server_name = $_SERVER['SERVER_NAME'];
+$server_local = "localhost";
+$server_phpstorm = "PhpStorm 2016.1.2";
 
 /** @noinspection PhpExpressionResultUnusedInspection */
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
-defined('SITE_URL') ? null : define("SITE_URL", "https://" . $_SERVER['SERVER_NAME']);
+
 defined('SITE_ROOT') ? null : define('SITE_ROOT', realpath(dirname(dirname(__FILE__)) . DS . ".." . DS));
+
+$is_https=str_starts_with(SITE_ROOT,'/home/' );
+$http = $is_https ? 'https://' : 'http://';
+
+defined('SITE_URL') ? null : define("SITE_URL", $http . $_SERVER['SERVER_NAME']);
+
+
+
+
 
 defined('MY_URL_PUBLIC') ? null : define('MY_URL_PUBLIC', SITE_URL . '/public/');
 defined('MY_URL_ADMIN') ? null : define('MY_URL_ADMIN', MY_URL_PUBLIC . 'admin/');
 defined('MY_URL_ADMIN_PAGE') ? null : define('MY_URL_ADMIN_PAGE', MY_URL_ADMIN . 'pages/');
+defined('MY_URL_PUBLIC_ASSETS') ? null : define('MY_URL_PUBLIC_ASSETS', MY_URL_PUBLIC . 'assets/');
+
 
 
 //----------------------------------------DELETE-------------------------------------------

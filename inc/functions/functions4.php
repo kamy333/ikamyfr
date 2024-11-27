@@ -93,7 +93,7 @@ function generateBootstrapModal($modalId, $title, $body, $footer)
             <h5 class="modal-title" id="{$modalId}Label">$title</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body ">
             $body
           </div>
           <div class="modal-footer">
@@ -104,4 +104,3 @@ function generateBootstrapModal($modalId, $title, $body, $footer)
     </div>
 HTML;
 }
-

@@ -1,7 +1,7 @@
 <?php
-require_once '../../inc/config/initialize.php';
+require_once('../../../../inc/config/initialize.php');
 $mytime = roundToNearestFiveMinutes(date('H:i'));
-
+$title = $title ?? '';
 //$sql = "SELECT id, chauffeur_name FROM chauffeurs";
 //$results = $database->query2_array($sql);
 
@@ -34,16 +34,16 @@ if (isset($_POST['submit'])) {
 
 
 $jsonFile = 'data/translation_text.json';
-$label1='Adresse Depart';
-$label2='Adresse Arrivee';
-$label3='Cartes assurance,identite ou autre';
+$label1 = 'Adresse Depart';
+$label2 = 'Adresse Arrivee';
+$label3 = 'Cartes assurance,identite ou autre';
 if (file_exists($jsonFile)) {
 // Get the JSON data and output it directly
     $jsonData = file_get_contents($jsonFile);
     $labelsArray = json_decode($jsonData, true);
-    $label1= $labelsArray['labels'][0]['label'];
-    $label2= $labelsArray['labels'][1]['label'];
-    $label3= $labelsArray['labels'][2]['label'];
+    $label1 = $labelsArray['labels'][0]['label'];
+    $label2 = $labelsArray['labels'][1]['label'];
+    $label3 = $labelsArray['labels'][2]['label'];
 }
 
 $title = 'New course - ' . $title;
@@ -57,19 +57,20 @@ $required = "<span class='text-danger fw-bold fs-5'>*</span>";
 
 <div class="container">
 
-    <?php $a=1; if($a==2){  ?>
-    <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        </button>
-        <strong>Errors!</strong>
-    </div>
+    <?php $a = 1;
+    if ($a == 2) { ?>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+            <strong>Errors!</strong>
+        </div>
 
-    <div class="alert alert-success alert-dismissible " role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        </button>
-        <strong>Successfully!</strong> Yesssssssssssssss
-    </div>
-    <?php }  ?>
+        <div class="alert alert-success alert-dismissible " role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+            <strong>Successfully!</strong> Yesssssssssssssss
+        </div>
+    <?php } ?>
 
     <h1 class="mt-5 text-primary text-center fw-bold">Enregistrement des courses</h1>
     <p class="text-danger fw-bold">* Indicates required question</p>
@@ -147,8 +148,8 @@ $required = "<span class='text-danger fw-bold fs-5'>*</span>";
         </div>
 
 
-        <?php echo '<br>'?>
-        <?php echo 'identité contrôl'.'<br>'; ?>
+        <?php echo '<br>' ?>
+        <?php echo 'identité contrôl' . '<br>'; ?>
 
 
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>

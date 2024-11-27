@@ -2,6 +2,7 @@
 require_once('../../inc/config/initialize.php');
 $blacklist_ip = new BlacklistIp();
 $blacklist_ip->block_blacklisted_ips();
+$session = $session ?? null;
 
 if ($session->is_logged_in()) {
     redirect_to("index.php");
@@ -99,11 +100,13 @@ if (request_is_post() && request_is_same_domain()) {
         <?php echo csrf_token_tag(); ?>
         <div class="mb-4">
             <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Enter your username" required>
+            <input type="text" class="form-control form-control-lg" id="username" name="username"
+                   placeholder="Enter your username" required>
         </div>
         <div class="mb-4">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter your password" required>
+            <input type="password" class="form-control form-control-lg" id="password" name="password"
+                   placeholder="Enter your password" required>
         </div>
         <div class="form-check mb-4">
             <input type="checkbox" class="form-check-input" id="rememberMe">

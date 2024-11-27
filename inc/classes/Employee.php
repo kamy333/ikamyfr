@@ -17,7 +17,7 @@ class Employee extends DatabaseObject
     protected static $table_name = "employees";
     protected static $db_fields = ['id', 'name', 'position', 'office', 'age', 'start_date', 'salary'];
 
-    public static $required_fields = ['name'];
+    public static $required_fields = ['name', 'position', 'office', 'age', 'start_date', 'salary'];
 
     protected static $db_fields_table_display_short = ['id', 'name', 'position', 'salary'];
 
